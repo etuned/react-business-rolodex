@@ -1,12 +1,23 @@
 import React from 'react';
 import Card from './Card';
 
-
-const Cardlist = ({people}) => {
+const Cardlist = ({ people }) => {
     return (
-        <div>
-           <Card id={people[0].id} name={people[0].name} email={people[0].email} />
-        </div>
+    <div>
+      {
+        people.map((user, i) => {
+            return (
+                <Card key={i} 
+                gender={people[i].gender} 
+                img={people[i].img} 
+                name={people[i].name} 
+                email={people[i].email} 
+                position={people[i].position} 
+                />
+            );
+        })    
+      }
+    </div>
     );
 } 
 
