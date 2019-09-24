@@ -1,34 +1,42 @@
 import React from 'react';
-import Cardlist from './Cardlist';
-import Searchbox from './Searchbox';
-import { people } from './people';
+import CardList from './CardList';
+import SearchBox from './SearchBox';
+
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      people: people,
+      people: [],
       searchfield: ''
     }
   }
 
-  onSearchChange(event) {
-    this.setState({ searchfield: event.target.value })
-    const filteredPeople = this.state.people.filter(people =>{
-      return people.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
-    })
-    console.log(filteredPeople);
+  componentDidMount() {
+    fetch('https://my-json-server.typicode.com/etuned/users/users')
+      .then(response=> response.json())
+      .then(users => {this.setState({ people: users})});
   }
-  
-  render (){
-    return (
-      <div className='tc'>
-        <h1>Our Team</h1>
-        <Searchbox onSearch={this.onSearchChange}/>
-        <Cardlist people={this.state.people}/>
-      </div>
-  );
-  }  
+
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+  }
+
+  render() {
+    const { people, searchfield } = this.state;
+    const filteredPeople = people.filter(people =>{
+      return people.name.toLowerCase().includes(searchfield.toLowerCase());
+    })
+    return !people.length ?
+      <h1>Loading</h1> :
+      (
+        <div className='tc'>
+          <h1 className='f1'>Our Team</h1>
+          <SearchBox searchChange={this.onSearchChange}/>
+            <CardList people={filteredPeople} />
+        </div>
+      );
+  }
 }
 
-export default App;  
+export default App;

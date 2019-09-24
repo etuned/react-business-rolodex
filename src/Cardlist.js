@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-const Cardlist = ({ people }) => {
+const CardList = ({ people }) => {
     return (
     <div>
       {
@@ -21,4 +21,4 @@ const Cardlist = ({ people }) => {
     );
 } 
 
-export default Cardlist;
+export default CardList;
