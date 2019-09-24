@@ -1,7 +1,7 @@
 {
   "name": "business-rolodex",
   "author": "Edwin Hart Bartunek",
-  "homepage": "https://etuned.github.io/react-business-rolodex",
+  "homepage": "https://etuned.github.io/react-business-rolodex/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
